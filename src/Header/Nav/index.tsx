@@ -40,15 +40,14 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
           </Link>
         )
       })}
-      <Link href="/products" className="text-primary hover:underline">
+      {/* <Link href="/products" className="text-primary hover:underline">
         {dictionary.common.products}
       </Link>
       <Link href="/search">
         <span className="sr-only">{dictionary.common.search}</span>
         <SearchIcon className="w-5 text-primary" />
-      </Link>
+      </Link> */}
       <LanguageSwitcher />
     </nav>
   )
-
 }
