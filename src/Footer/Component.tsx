@@ -109,18 +109,21 @@ export async function Footer() {
               <div>
                 <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
                 <div className="flex space-x-4">
-                  {socialLinks.map(({ platform, url }, i) => (
-                    <a
-                      key={i}
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors"
-                      aria-label={`Follow us on ${platform}`}
-                    >
-                      <SocialIcon platform={platform} />
-                    </a>
-                  ))}
+                  {socialLinks.map(({ platform, url }, i) => {
+                    if (!platform) return null;
+                    return (
+                      <a
+                        key={i}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-300 hover:text-white transition-colors"
+                        aria-label={`Follow us on ${platform}`}
+                      >
+                        <SocialIcon platform={platform} />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             )}

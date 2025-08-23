@@ -56,7 +56,9 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, pagination }
         {products.map((product) => {
           const isOnSale = product.compareAtPrice && product.compareAtPrice > product.price
           const discountPercentage = isOnSale
-            ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
+            ? Math.round(
+                ((product.compareAtPrice! - product.price) / product.compareAtPrice!) * 100,
+              )
             : 0
 
           return (
@@ -90,7 +92,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, pagination }
                 <h3 className="font-medium text-gray-900 group-hover:text-primary transition-colors line-clamp-2">
                   {product.title}
                 </h3>
-                
+
                 {product.shortDescription && (
                   <p className="text-sm text-gray-600 mt-1 line-clamp-2">
                     {product.shortDescription}
@@ -116,9 +118,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, pagination }
                 {/* Price */}
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center space-x-2">
-                    <span className="font-bold text-gray-900">
-                      {formatPrice(product.price)}
-                    </span>
+                    <span className="font-bold text-gray-900">{formatPrice(product.price)}</span>
                     {isOnSale && (
                       <span className="text-sm text-gray-500 line-through">
                         {formatPrice(product.compareAtPrice!)}
@@ -172,9 +172,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ products, pagination }
                 const showEllipsis = index > 0 && page - array[index - 1] > 1
                 return (
                   <React.Fragment key={page}>
-                    {showEllipsis && (
-                      <span className="px-2 py-1 text-gray-500">...</span>
-                    )}
+                    {showEllipsis && <span className="px-2 py-1 text-gray-500">...</span>}
                     <Button
                       variant={page === pagination.currentPage ? 'default' : 'outline'}
                       size="sm"

@@ -6,6 +6,8 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+import { ReactNode } from "react";
+
 /**
  * Supported timezones in IANA format.
  *
@@ -889,6 +891,7 @@ export interface Product {
  * via the `definition` "product-categories".
  */
 export interface ProductCategory {
+  title: ReactNode;
   id: string;
   name: string;
   description?: string | null;

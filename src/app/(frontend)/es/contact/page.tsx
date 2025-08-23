@@ -11,8 +11,6 @@ import { generateMeta } from '@/utilities/generateMeta'
 import { getDictionary } from '@/dictionaries'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { isEnabled: draft } = draftMode()
-
   const page = await queryPageBySlug({
     slug: 'contact',
     locale: 'es',
@@ -22,7 +20,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { isEnabled: draft } = await draftMode()
   const dictionary = await getDictionary('es')
 
   const page = await queryPageBySlug({
@@ -60,7 +57,7 @@ export default async function Page() {
   )
 }
 
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
+const queryPageBySlug = cache(async ({ slug }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })

@@ -1,4 +1,4 @@
-import type { Locale } from '@/payload-types'
+import type { Locale } from '@/utilities/getLocale'
 
 type Dictionary = {
   common: {
@@ -66,7 +66,7 @@ const dictionaries = {
 } as const
 
 export const getDictionary = async (locale: Locale): Promise<Dictionary> => {
-  const dictionaryLoader = dictionaries[locale]
+  const dictionaryLoader = dictionaries[locale as keyof typeof dictionaries]
   if (!dictionaryLoader) {
     // Fallback to English if locale not found
     return dictionaries.en()

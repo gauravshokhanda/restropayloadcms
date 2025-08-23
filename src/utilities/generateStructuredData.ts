@@ -1,9 +1,9 @@
-import type { Page, Post } from '../payload-types'
+import type { Page, Post, Product } from '../payload-types'
 import { getServerSideURL } from './getURL'
 
 export interface StructuredDataArgs {
-  doc: Partial<Page> | Partial<Post> | null
-  type?: 'page' | 'post'
+  doc: Partial<Page> | Partial<Post> | Partial<Product> | null
+  type?: 'page' | 'post' | 'product'
   locale?: string
 }
 
@@ -13,9 +13,21 @@ export const generateStructuredData = (args: StructuredDataArgs) => {
   
   if (!doc) return null
 
-  const baseStructuredData = {
+  const getSchemaType = () => {
+    switch (type) {
+      case 'post':
+        return 'Article'
+      case 'product':
+        return 'Product'
+      default:
+        return 'WebPage'
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const baseStructuredData: any = {
     '@context': 'https://schema.org',
-    '@type': type === 'post' ? 'Article' : 'WebPage',
+    '@type': getSchemaType(),
     name: doc.title || doc.meta?.title || 'Payload Website Template',
     headline: doc.title || doc.meta?.title || 'Payload Website Template',
     description: doc.meta?.description || 'An open-source website built with Payload and Next.js.',

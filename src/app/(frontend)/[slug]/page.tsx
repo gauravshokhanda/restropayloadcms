@@ -13,6 +13,8 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getDictionary } from '@/dictionaries'
+import { getLocaleFromPathname } from '@/utilities/getLocale'
+import { headers } from 'next/headers'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -64,8 +66,13 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
+  // Get current locale from URL
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || '/'
+  const locale = getLocaleFromPathname(pathname)
+
   const { hero, layout } = page
-  const dictionary = await getDictionary('en')
+  const dictionary = await getDictionary(locale)
 
   return (
     <article className="pt-16 pb-24">
@@ -76,7 +83,7 @@ export default async function Page({ params: paramsPromise }: Args) {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} locale="en" dictionary={dictionary} />
+      <RenderBlocks blocks={layout} locale={locale} dictionary={dictionary} />
     </article>
   )
 }
@@ -87,7 +94,12 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     slug,
   })
 
-  return generateMeta({ doc: page, type: 'page', locale: 'en' })
+  // Get current locale for metadata
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || '/'
+  const locale = getLocaleFromPathname(pathname)
+
+  return generateMeta({ doc: page, type: 'page', locale })
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {

@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { anyone } from '../../access/anyone'
+import { anyone as _anyone } from '../../access/anyone'
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'

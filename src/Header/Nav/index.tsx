@@ -4,15 +4,11 @@ import React, { useEffect, useState } from 'react'
 
 import type { Header as HeaderType, Page } from '@/payload-types'
 
-import { CMSLink } from '@/components/Link'
 import Link from 'next/link'
-import { SearchIcon } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
-import { useDictionary } from '@/providers/Dictionary'
 
-export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
+export const HeaderNav: React.FC<{ data: HeaderType }> = ({}) => {
   const [pages, setPages] = useState<Page[]>([])
-  const { dictionary } = useDictionary()
 
   useEffect(() => {
     const fetchPages = async () => {

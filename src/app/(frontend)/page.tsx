@@ -10,15 +10,20 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { getDictionary } from '@/dictionaries'
+import { getLocaleFromPathname } from '@/utilities/getLocale'
+import { headers } from 'next/headers'
 
 export default async function HomePage() {
   const { isEnabled: draft } = await draftMode()
   const slug = 'home'
   const url = '/'
 
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
+  // Get current locale from URL
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || '/'
+  const locale = getLocaleFromPathname(pathname)
 
-  page = await queryPageBySlug({
+  const page: RequiredDataFromCollectionSlug<'pages'> | null = await queryPageBySlug({
     slug,
   })
 
@@ -27,7 +32,7 @@ export default async function HomePage() {
   }
 
   const { hero, layout } = page
-  const dictionary = await getDictionary('en')
+  const dictionary = await getDictionary(locale)
 
   return (
     <article className="pt-16 pb-24">
@@ -37,7 +42,7 @@ export default async function HomePage() {
       {draft && <LivePreviewListener />}
 
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} locale="en" dictionary={dictionary} />
+      <RenderBlocks blocks={layout} locale={locale} dictionary={dictionary} />
     </article>
   )
 }
@@ -47,7 +52,12 @@ export async function generateMetadata(): Promise<Metadata> {
     slug: 'home',
   })
 
-  return generateMeta({ doc: page, type: 'page', locale: 'en' })
+  // Get current locale for metadata
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || '/'
+  const locale = getLocaleFromPathname(pathname)
+  
+  return generateMeta({ doc: page, type: 'page', locale })
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {

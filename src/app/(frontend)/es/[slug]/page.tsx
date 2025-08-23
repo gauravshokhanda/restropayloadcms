@@ -12,15 +12,14 @@ import { getDictionary } from '@/dictionaries'
 
 export async function generateStaticParams() {
   // Generate static params for Spanish pages
-  return [
-    { slug: 'about' },
-    { slug: 'services' },
-    { slug: 'blog' },
-  ]
+  return [{ slug: 'about' }, { slug: 'services' }, { slug: 'blog' }]
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { isEnabled: draft } = draftMode()
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
   const { slug } = await params
 
   const page = await queryPageBySlug({
@@ -32,7 +31,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-  const { isEnabled: draft } = await draftMode()
   const { slug } = await params
   const dictionary = await getDictionary('es')
 
@@ -71,7 +69,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   )
 }
 
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
+const queryPageBySlug = cache(async ({ slug }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })

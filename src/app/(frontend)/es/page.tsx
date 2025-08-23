@@ -3,17 +3,13 @@ import { draftMode } from 'next/headers'
 import { cache } from 'react'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
-import type { RequiredDataFromCollectionSlug } from 'payload'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
-import { homeStatic } from '@/endpoints/seed/home-static'
 import { getDictionary } from '@/dictionaries'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { isEnabled: draft } = draftMode()
-
   const page = await queryPageBySlug({
     slug: 'home',
     locale: 'es',
@@ -23,7 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const { isEnabled: draft } = await draftMode()
   const dictionary = await getDictionary('es')
 
   const page = await queryPageBySlug({
@@ -69,7 +64,7 @@ export default async function Page() {
   )
 }
 
-const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
+const queryPageBySlug = cache(async ({ slug }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload({ config: configPromise })

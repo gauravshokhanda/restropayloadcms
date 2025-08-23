@@ -30,7 +30,7 @@ export const RenderBlocks: React.FC<{
   locale?: string
   dictionary?: Dictionary
 }> = (props) => {
-  const { blocks, locale, dictionary } = props
+  const { blocks, dictionary } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 

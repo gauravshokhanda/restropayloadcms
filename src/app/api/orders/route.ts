@@ -8,9 +8,13 @@ export async function POST(request: NextRequest) {
     const data = await request.json()
 
     // Create the order
+    // Generate a unique order number
+    const orderNumber = `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+
     const order = await payload.create({
       collection: 'orders',
       data: {
+        orderNumber,
         customerInfo: data.customerInfo,
         shippingAddress: data.shippingAddress,
         billingAddress: data.billingAddress,

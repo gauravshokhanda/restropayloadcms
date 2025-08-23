@@ -1,5 +1,5 @@
-import type { Payload } from 'payload'
-import type { Product, ProductCategory } from '../payload-types'
+import type { Payload as _Payload } from 'payload'
+import type { Product as _Product, ProductCategory as _ProductCategory } from '../payload-types'
 
 // Sample product categories
 const productCategories = [

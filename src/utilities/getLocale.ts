@@ -1,7 +1,8 @@
 import { headers } from 'next/headers'
-import type { Locale } from '@/payload-types'
 
-const locales: Locale[] = ['en', 'es']
+export type Locale = 'en' | 'es' | 'hi'
+
+const locales: Locale[] = ['en', 'es', 'hi']
 const defaultLocale: Locale = 'en'
 
 export async function getLocale(): Promise<Locale> {
@@ -50,4 +51,3 @@ export function getLocaleFromPathname(pathname: string): Locale {
 }
 
 export { locales, defaultLocale }
-export type { Locale }

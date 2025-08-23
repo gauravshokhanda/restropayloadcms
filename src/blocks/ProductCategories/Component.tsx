@@ -3,13 +3,6 @@ import Link from 'next/link'
 import { Media } from '@/components/Media'
 import type { ProductCategoriesBlock, ProductCategory } from '@/payload-types'
 
-type Props = {
-  title?: string
-  subtitle?: string
-  categories?: (string | ProductCategory)[]
-  layout?: 'grid' | 'cards'
-}
-
 export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> = ({
   title = 'Shop by Category',
   subtitle,
@@ -20,8 +13,8 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
     return null
   }
 
-  const validCategories = categories.filter((category): category is ProductCategory => 
-    typeof category === 'object' && category !== null
+  const validCategories = categories.filter(
+    (category): category is ProductCategory => typeof category === 'object' && category !== null,
   )
 
   if (layout === 'cards') {
@@ -31,9 +24,7 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-            {subtitle && (
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
-            )}
+            {subtitle && <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
           </div>
 
           {/* Categories Cards */}
@@ -55,15 +46,13 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
                     )}
                     <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all" />
                   </div>
-                  
+
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {category.title}
                     </h3>
                     {category.description && (
-                      <p className="text-gray-600 text-sm line-clamp-2">
-                        {category.description}
-                      </p>
+                      <p className="text-gray-600 text-sm line-clamp-2">{category.description}</p>
                     )}
                   </div>
                 </div>
@@ -82,9 +71,7 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">{title}</h2>
-          {subtitle && (
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
-          )}
+          {subtitle && <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>}
         </div>
 
         {/* Categories Grid */}
@@ -108,7 +95,7 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
                     </div>
                   )}
                 </div>
-                
+
                 <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
                   {category.title}
                 </h3>

@@ -32,7 +32,7 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
     }
   }
 
-  const getPaymentStatusColor = (status: string) => {
+  const getPaymentStatusColor = (status: string | null | undefined) => {
     switch (status) {
       case 'paid':
         return 'bg-green-100 text-green-800'
@@ -83,11 +83,13 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
             <div>
               <p className="text-sm text-gray-600">Payment Status</p>
               <Badge className={getPaymentStatusColor(order.paymentStatus)}>
-                {order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}
+                {order.paymentStatus
+                  ? order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)
+                  : 'Unknown'}
               </Badge>
             </div>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p className="text-sm text-gray-600">Order Date</p>
@@ -116,17 +118,20 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
           <div className="space-y-4">
             {order.items.map((item, index) => {
               const product = item.product as Product
-              const image = Array.isArray(product.images) && product.images.length > 0
-                ? product.images[0]
-                : null
-              
+
               return (
                 <div key={index} className="flex items-center space-x-4 p-4 border rounded-lg">
                   <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden">
-                    {image && typeof image === 'object' && (
+                    {product.images && product.images.length > 0 && (
                       <MediaComponent
-                        resource={image as Media}
-                        className="w-full h-full object-cover"
+                        resource={
+                          typeof product.images[0].image === 'object'
+                            ? (product.images[0].image as Media)
+                            : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              (product.images[0].image as any)
+                        }
+                        size="thumbnail"
+                        className="w-16 h-16 object-cover rounded"
                       />
                     )}
                   </div>
@@ -142,9 +147,9 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
               )
             })}
           </div>
-          
+
           <Separator className="my-4" />
-          
+
           <div className="space-y-2">
             <div className="flex justify-between">
               <span>Subtotal</span>
@@ -152,11 +157,11 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
             </div>
             <div className="flex justify-between">
               <span>Tax</span>
-              <span>${order.tax.toFixed(2)}</span>
+              <span>${order.tax ? order.tax.toFixed(2) : '0.00'}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span>{order.shipping === 0 ? 'Free' : `$${order.shipping.toFixed(2)}`}</span>
+              <span>{order.shipping === 0 ? 'Free' : `$${(order.shipping || 0).toFixed(2)}`}</span>
             </div>
             <Separator />
             <div className="flex justify-between font-bold text-lg">
@@ -183,7 +188,8 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
               </p>
               <p>{order.shippingAddress.street}</p>
               <p>
-                {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.postalCode}
+                {order.shippingAddress.city}, {order.shippingAddress.state}{' '}
+                {order.shippingAddress.postalCode}
               </p>
               <p>{order.shippingAddress.country}</p>
             </div>
@@ -226,15 +232,18 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
       {/* Next Steps */}
       <Card>
         <CardHeader>
-          <CardTitle>What's Next?</CardTitle>
+          <CardTitle>What&apos;s Next?</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <p>• You will receive an email confirmation shortly at <strong>{order.customerInfo.email}</strong></p>
-            <p>• We'll send you tracking information once your order ships</p>
+            <p>
+              • You will receive an email confirmation shortly at{' '}
+              <strong>{order.customerInfo.email}</strong>
+            </p>
+            <p>• We&apos;ll send you tracking information once your order ships</p>
             <p>• If you have any questions, please contact our customer service team</p>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Button asChild>
               <Link href="/products">Continue Shopping</Link>

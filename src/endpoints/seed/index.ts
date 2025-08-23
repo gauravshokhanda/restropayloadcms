@@ -290,6 +290,7 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Electronics',
+        title: 'Electronics',
         description: 'Latest electronic gadgets and devices',
         image: image1Doc.id,
       },
@@ -298,6 +299,7 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Clothing',
+        title: 'Clothing',
         description: 'Fashion and apparel for all occasions',
         image: image2Doc.id,
       },
@@ -306,6 +308,7 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Home & Garden',
+        title: 'Home & Garden',
         description: 'Everything for your home and garden',
         image: image3Doc.id,
       },
@@ -314,6 +317,7 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Books',
+        title: 'Books',
         description: 'Books and educational materials',
         image: imageHomeDoc.id,
       },
@@ -326,12 +330,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Wireless Headphones',
-        description: 'High-quality wireless headphones with noise cancellation',
+        title: 'Wireless Headphones',
+        shortDescription: 'High-quality wireless headphones with noise cancellation',
         price: 199.99,
         images: [{ image: image1Doc.id, alt: 'Wireless Headphones' }],
         categories: [electronicsCategory.id],
-        inventory: 50,
+        inventory: { quantity: 50, trackQuantity: true },
         featured: true,
         _status: 'published',
       },
@@ -339,12 +343,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Smart Watch',
-        description: 'Advanced smartwatch with health monitoring features',
+        title: 'Smart Watch',
+        shortDescription: 'Advanced smartwatch with health monitoring features',
         price: 299.99,
         images: [{ image: image2Doc.id, alt: 'Smart Watch' }],
         categories: [electronicsCategory.id],
-        inventory: 30,
+        inventory: { quantity: 30, trackQuantity: true },
         featured: true,
         _status: 'published',
       },
@@ -352,12 +356,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Cotton T-Shirt',
-        description: 'Comfortable 100% cotton t-shirt in various colors',
+        title: 'Cotton T-Shirt',
+        shortDescription: 'Comfortable 100% cotton t-shirt in various colors',
         price: 29.99,
         images: [{ image: image3Doc.id, alt: 'Cotton T-Shirt' }],
         categories: [clothingCategory.id],
-        inventory: 100,
+        inventory: { quantity: 100, trackQuantity: true },
         featured: true,
         _status: 'published',
       },
@@ -365,12 +369,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Coffee Maker',
-        description: 'Automatic coffee maker with programmable timer',
+        title: 'Coffee Maker',
+        shortDescription: 'Automatic coffee maker with programmable timer',
         price: 89.99,
         images: [{ image: imageHomeDoc.id, alt: 'Coffee Maker' }],
         categories: [homeCategory.id],
-        inventory: 25,
+        inventory: { quantity: 25, trackQuantity: true },
         featured: true,
         _status: 'published',
       },
@@ -378,12 +382,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Programming Guide',
-        description: 'Complete guide to modern web development',
+        title: 'Programming Guide',
+        shortDescription: 'Complete guide to modern web development',
         price: 49.99,
         images: [{ image: image1Doc.id, alt: 'Programming Guide' }],
         categories: [booksCategory.id],
-        inventory: 75,
+        inventory: { quantity: 75, trackQuantity: true },
         featured: false,
         _status: 'published',
       },
@@ -391,12 +395,12 @@ export const seed = async ({
     payload.create({
       collection: 'products',
       data: {
-        name: 'Bluetooth Speaker',
-        description: 'Portable bluetooth speaker with excellent sound quality',
+        title: 'Bluetooth Speaker',
+        shortDescription: 'Portable bluetooth speaker with excellent sound quality',
         price: 79.99,
         images: [{ image: image2Doc.id, alt: 'Bluetooth Speaker' }],
         categories: [electronicsCategory.id],
-        inventory: 40,
+        inventory: { quantity: 40, trackQuantity: true },
         featured: true,
         _status: 'published',
       },

@@ -6,7 +6,6 @@ import { Media as MediaComponent } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import { useCart } from '@/providers/Cart'
 import { ShoppingCart, Heart, Share2 } from 'lucide-react'
 
@@ -32,9 +31,10 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   }
 
   const isOnSale = product.compareAtPrice && product.compareAtPrice > product.price
-  const discountPercentage = isOnSale
-    ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
-    : 0
+  const discountPercentage =
+    isOnSale && product.compareAtPrice
+      ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
+      : 0
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -83,9 +83,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
 
           {/* Price */}
           <div className="flex items-center space-x-2">
-            <span className="text-3xl font-bold text-gray-900">
-              {formatPrice(product.price)}
-            </span>
+            <span className="text-3xl font-bold text-gray-900">{formatPrice(product.price)}</span>
             {isOnSale && (
               <>
                 <span className="text-xl text-gray-500 line-through">
@@ -97,9 +95,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           </div>
 
           {/* SKU */}
-          {product.sku && (
-            <p className="text-sm text-gray-500">SKU: {product.sku}</p>
-          )}
+          {product.sku && <p className="text-sm text-gray-500">SKU: {product.sku}</p>}
 
           {/* Categories */}
           {product.categories && product.categories.length > 0 && (
@@ -165,7 +161,9 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                 </span>
               ) : (
                 <span className="text-red-600">
-                  {product.inventory.allowBackorder ? '⚠ Available for backorder' : '✗ Out of stock'}
+                  {product.inventory.allowBackorder
+                    ? '⚠ Available for backorder'
+                    : '✗ Out of stock'}
                 </span>
               )}
             </div>
@@ -178,7 +176,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-4">Description</h2>
           <div className="prose max-w-none">
-            <RichText content={product.description} enableGutter={false} />
+            <RichText
+              content={JSON.stringify(product.description)}
+              enableGutter={false}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              data={product.description as any}
+            />
           </div>
         </div>
       )}
@@ -206,7 +209,10 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
             {product.relatedProducts.map((relatedProduct, index) => {
               if (typeof relatedProduct === 'object') {
                 return (
-                  <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div
+                    key={index}
+                    className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+                  >
                     {relatedProduct.images && relatedProduct.images[0] && (
                       <div className="aspect-square mb-2 overflow-hidden rounded-md bg-gray-100">
                         <MediaComponent
@@ -216,9 +222,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                       </div>
                     )}
                     <h3 className="font-medium text-sm">{relatedProduct.title}</h3>
-                    <p className="text-sm font-bold mt-1">
-                      {formatPrice(relatedProduct.price)}
-                    </p>
+                    <p className="text-sm font-bold mt-1">{formatPrice(relatedProduct.price)}</p>
                   </div>
                 )
               }

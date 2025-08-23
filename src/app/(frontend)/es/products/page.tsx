@@ -2,14 +2,10 @@ import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import React from 'react'
-import type {
-  Product as _Product,
-  ProductCategory as _ProductCategory,
-  Product,
-  ProductCategory,
-} from '@/payload-types'
-import { ProductGrid } from './ProductGrid'
-import { ProductFilters } from './ProductFilters'
+import type { Product, ProductCategory } from '@/payload-types'
+import { ProductGrid } from '../../products/ProductGrid'
+import { ProductFilters } from '../../products/ProductFilters'
+import { getDictionary } from '@/dictionaries'
 
 type Args = {
   searchParams: Promise<{
@@ -20,10 +16,11 @@ type Args = {
   }>
 }
 
-export default async function ProductsPage({ searchParams }: Args) {
+export default async function ProductsPageES({ searchParams }: Args) {
   const { category, sort = 'createdAt', page = '1', search } = await searchParams
   const currentPage = parseInt(page, 10)
   const limit = 12
+  const dictionary = await getDictionary('es')
 
   const payload = await getPayload({ config: configPromise })
 
@@ -91,9 +88,11 @@ export default async function ProductsPage({ searchParams }: Args) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Products</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">
+          {dictionary.products?.title || 'Productos'}
+        </h1>
         <p className="text-gray-600">
-          Discover our collection of {productsResult.totalDocs} products
+          Descubre nuestra colección de {productsResult.totalDocs} productos
         </p>
       </div>
 
@@ -126,6 +125,6 @@ export default async function ProductsPage({ searchParams }: Args) {
 }
 
 export const metadata: Metadata = {
-  title: 'Products',
-  description: 'Browse our collection of products',
+  title: 'Productos',
+  description: 'Explora nuestra colección de productos',
 }

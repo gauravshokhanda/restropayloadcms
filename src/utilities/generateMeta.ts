@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import type { Media, Page, Post, Config } from '../payload-types'
+import type { Media, Page, Post, Product, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
@@ -21,8 +21,8 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 }
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post> | null
-  type?: 'page' | 'post'
+  doc: Partial<Page> | Partial<Post> | Partial<Product> | null
+  type?: 'page' | 'post' | 'product'
   locale?: string
 }): Promise<Metadata> => {
   const { doc, type = 'page', locale = 'en' } = args
@@ -41,11 +41,11 @@ export const generateMeta = async (args: {
   const metadata: Metadata = {
     title,
     description,
-    keywords: type === 'post' && 'categories' in doc && doc.categories 
-      ? (doc.categories as any[]).map(cat => typeof cat === 'object' && cat?.title ? cat.title : '').filter(Boolean).join(', ')
+    keywords: type === 'post' && doc && 'categories' in doc && doc.categories 
+      ? (doc.categories as Array<{ title?: string }>).map(cat => typeof cat === 'object' && cat?.title ? cat.title : '').filter(Boolean).join(', ')
       : undefined,
-    authors: type === 'post' && 'authors' in doc && doc.authors
-      ? (doc.authors as any[]).map(author => ({ name: typeof author === 'object' && author?.name ? author.name : 'Unknown' }))
+    authors: type === 'post' && doc && 'authors' in doc && doc.authors
+      ? (doc.authors as Array<{ name?: string }>).map(author => ({ name: typeof author === 'object' && author?.name ? author.name : 'Unknown' }))
       : undefined,
     openGraph: mergeOpenGraph({
       description,

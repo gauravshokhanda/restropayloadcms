@@ -21,7 +21,7 @@ export async function generateStaticParams() {
   })
 
   const params = products.docs
-    ?.filter((doc): doc is { slug: string } => typeof doc?.slug === 'string')
+    ?.filter((doc): doc is Product => typeof doc?.slug === 'string')
     .map(({ slug }) => ({ slug }))
 
   return params || []
