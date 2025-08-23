@@ -1,0 +1,58 @@
+{
+  "common": {
+    "home": "Home",
+    "products": "Products",
+    "search": "Search",
+    "contact": "Contact",
+    "about": "About",
+    "loading": "Loading...",
+    "error": "Error",
+    "notFound": "Not Found",
+    "backToHome": "Back to Home"
+  },
+  "navigation": {
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language"
+  },
+  "products": {
+    "title": "Products",
+    "featuredProducts": "Featured Products",
+    "viewAllProducts": "View All Products",
+    "productCategories": "Product Categories",
+    "price": "Price",
+    "addToCart": "Add to Cart",
+    "outOfStock": "Out of Stock",
+    "inStock": "In Stock",
+    "specifications": "Specifications",
+    "relatedProducts": "Related Products",
+    "description": "Description"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Checkout",
+    "quantity": "Quantity",
+    "remove": "Remove"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "billingAddress": "Billing Address",
+    "shippingAddress": "Shipping Address",
+    "paymentMethod": "Payment Method",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
+  },
+  "hero": {
+    "welcome": "Welcome to Our Store",
+    "subtitle": "Discover amazing products at great prices",
+    "shopNow": "Shop Now",
+    "learnMore": "Learn More"
+  }
+}

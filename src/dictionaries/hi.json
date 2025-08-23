@@ -1,0 +1,75 @@
+{
+  "common": {
+    "home": "होम",
+    "products": "उत्पाद",
+    "search": "खोजें",
+    "contact": "संपर्क",
+    "about": "हमारे बारे में",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "notFound": "नहीं मिला",
+    "backToHome": "होम पर वापस जाएं"
+  },
+  "navigation": {
+    "menu": "मेनू",
+    "close": "बंद करें",
+    "language": "भाषा"
+  },
+  "products": {
+    "title": "उत्पाद",
+    "featuredProducts": "फीचर्ड उत्पाद",
+    "viewAllProducts": "सभी उत्पाद देखें",
+    "productCategories": "उत्पाद श्रेणियां",
+    "price": "मूल्य",
+    "addToCart": "कार्ट में जोड़ें",
+    "outOfStock": "स्टॉक में नहीं",
+    "inStock": "स्टॉक में",
+    "specifications": "विशेषताएं",
+    "relatedProducts": "संबंधित उत्पाद",
+    "description": "विवरण"
+  },
+  "cart": {
+    "title": "शॉपिंग कार्ट",
+    "empty": "आपका कार्ट खाली है",
+    "total": "कुल",
+    "checkout": "चेकआउट",
+    "remove": "हटाएं",
+    "quantity": "मात्रा",
+    "subtotal": "उप-योग"
+  },
+  "checkout": {
+    "title": "चेकआउट",
+    "billingAddress": "बिलिंग पता",
+    "shippingAddress": "शिपिंग पता",
+    "paymentMethod": "भुगतान विधि",
+    "placeOrder": "ऑर्डर दें",
+    "orderSummary": "ऑर्डर सारांश"
+  },
+  "footer": {
+    "allRightsReserved": "सभी अधिकार सुरक्षित",
+    "privacyPolicy": "गोपनीयता नीति",
+    "termsOfService": "सेवा की शर्तें"
+  },
+  "hero": {
+    "welcome": "हमारे स्टोर में आपका स्वागत है",
+    "subtitle": "बेहतरीन कीमतों पर अद्भुत उत्पाद खोजें",
+    "shopNow": "अभी खरीदारी करें",
+    "learnMore": "और जानें"
+  },
+  "contact": {
+    "title": "संपर्क करें",
+    "name": "नाम",
+    "email": "ईमेल",
+    "message": "संदेश",
+    "send": "भेजें",
+    "thankYou": "धन्यवाद! आपका संदेश भेज दिया गया है।"
+  },
+  "blog": {
+    "title": "ब्लॉग",
+    "readMore": "और पढ़ें",
+    "publishedOn": "प्रकाशित",
+    "author": "लेखक",
+    "categories": "श्रेणियां",
+    "relatedPosts": "संबंधित पोस्ट"
+  }
+}

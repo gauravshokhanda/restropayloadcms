@@ -1,0 +1,58 @@
+{
+  "common": {
+    "home": "Inicio",
+    "products": "Productos",
+    "search": "Buscar",
+    "contact": "Contacto",
+    "about": "Acerca de",
+    "loading": "Cargando...",
+    "error": "Error",
+    "notFound": "No Encontrado",
+    "backToHome": "Volver al Inicio"
+  },
+  "navigation": {
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "Idioma"
+  },
+  "products": {
+    "title": "Productos",
+    "featuredProducts": "Productos Destacados",
+    "viewAllProducts": "Ver Todos los Productos",
+    "productCategories": "Categorías de Productos",
+    "price": "Precio",
+    "addToCart": "Agregar al Carrito",
+    "outOfStock": "Agotado",
+    "inStock": "En Stock",
+    "specifications": "Especificaciones",
+    "relatedProducts": "Productos Relacionados",
+    "description": "Descripción"
+  },
+  "cart": {
+    "title": "Carrito de Compras",
+    "empty": "Tu carrito está vacío",
+    "total": "Total",
+    "checkout": "Finalizar Compra",
+    "quantity": "Cantidad",
+    "remove": "Eliminar"
+  },
+  "checkout": {
+    "title": "Finalizar Compra",
+    "billingAddress": "Dirección de Facturación",
+    "shippingAddress": "Dirección de Envío",
+    "paymentMethod": "Método de Pago",
+    "placeOrder": "Realizar Pedido",
+    "orderSummary": "Resumen del Pedido"
+  },
+  "footer": {
+    "allRightsReserved": "Todos los derechos reservados",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio"
+  },
+  "hero": {
+    "welcome": "Bienvenido a Nuestra Tienda",
+    "subtitle": "Descubre productos increíbles a excelentes precios",
+    "shopNow": "Comprar Ahora",
+    "learnMore": "Saber Más"
+  }
+}
