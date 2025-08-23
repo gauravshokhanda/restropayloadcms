@@ -56,11 +56,25 @@ export const TestimonialBlockComponent: React.FC<Props> = ({ className, testimon
                     </blockquote>
                     <figcaption className="mt-6 flex items-center gap-x-4">
                       {avatar && (
-                        <img
-                          className="h-10 w-10 rounded-full bg-gray-50"
-                          src={typeof avatar === 'string' ? avatar : avatar.url || ''}
-                          alt={testimonial.customerName}
-                        />
+                        typeof avatar === 'string' ? (
+                          <img
+                            className="h-10 w-10 rounded-full bg-gray-50"
+                            src={avatar}
+                            alt={testimonial.customerName}
+                          />
+                        ) : avatar.url ? (
+                          <img
+                            className="h-10 w-10 rounded-full bg-gray-50"
+                            src={avatar.url}
+                            alt={testimonial.customerName}
+                          />
+                        ) : (
+                          <div className="h-10 w-10 rounded-full bg-indigo-600 flex items-center justify-center">
+                            <span className="text-sm font-medium text-white">
+                              {testimonial.customerName.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )
                       )}
                       {!avatar && (
                         <div className="h-10 w-10 rounded-full bg-indigo-600 flex items-center justify-center">
