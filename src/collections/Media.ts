@@ -7,6 +7,7 @@ import {
 } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'

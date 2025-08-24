@@ -282,28 +282,30 @@ export default buildConfig({
   // ...
 ```
 
-We also support Vercel's blob storage:
+We also support Vercel's blob storage for handling media uploads:
 
 ```bash
-pnpm add @payloadcms/storage-vercel-blob
+npm install @vercel/blob @payloadcms/storage-vercel-blob
 ```
 
-```ts
-// payload.config.ts
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+The Media collection is already configured to automatically use Vercel Blob storage when deployed to Vercel. You just need to:
 
-export default buildConfig({
-  // ...
-  plugins: [
-    vercelBlobStorage({
-      collections: {
-        [Media.slug]: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-    }),
-  ],
-  // ...
-```
+1. **Set up Vercel Blob Storage:**
+   - Go to your Vercel dashboard
+   - Navigate to Storage > Blob
+   - Create a new Blob store
+   - Copy the `BLOB_READ_WRITE_TOKEN`
+
+2. **Configure Environment Variables:**
+   Add the following environment variable to your Vercel project:
+   ```
+   BLOB_READ_WRITE_TOKEN=your_vercel_blob_token_here
+   ```
+
+3. **Deploy:**
+   The configuration automatically detects Vercel deployment and uses Blob storage for media files, while falling back to local storage for development.
+
+**Important:** This solves the common issue where images don't appear on Vercel deployments because the local `public/media/` directory is not available in production.
 
 There is also a simplified [one click deploy](https://github.com/payloadcms/payload/tree/templates/with-vercel-postgres) to Vercel should you need it.
 
@@ -319,5 +321,6 @@ You can also deploy your app manually, check out the [deployment documentation](
 ## Questions
 
 If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
-#   r e s t r o w o r k s p a y l o a d c m s  
+#   r e s t r o w o r k s p a y l o a d c m s 
+ 
  
