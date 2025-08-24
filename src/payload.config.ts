@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { s3Storage } from '@payloadcms/storage-s3'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -87,13 +87,20 @@ export default buildConfig({
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
-    ...(process.env.VERCEL && process.env.BLOB_READ_WRITE_TOKEN
+    ...(process.env.S3_BUCKET && process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY
       ? [
-          vercelBlobStorage({
+          s3Storage({
             collections: {
               media: true,
             },
-            token: process.env.BLOB_READ_WRITE_TOKEN,
+            bucket: process.env.S3_BUCKET,
+            config: {
+              credentials: {
+                accessKeyId: process.env.S3_ACCESS_KEY_ID,
+                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+              },
+              region: process.env.S3_REGION,
+            },
           }),
         ]
       : []),
