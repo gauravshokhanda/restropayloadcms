@@ -290,7 +290,6 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Electronics',
-        title: 'Electronics',
         description: 'Latest electronic gadgets and devices',
         image: image1Doc.id,
       },
@@ -299,7 +298,6 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Clothing',
-        title: 'Clothing',
         description: 'Fashion and apparel for all occasions',
         image: image2Doc.id,
       },
@@ -308,7 +306,6 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Home & Garden',
-        title: 'Home & Garden',
         description: 'Everything for your home and garden',
         image: image3Doc.id,
       },
@@ -317,7 +314,6 @@ export const seed = async ({
       collection: 'product-categories',
       data: {
         name: 'Books',
-        title: 'Books',
         description: 'Books and educational materials',
         image: imageHomeDoc.id,
       },

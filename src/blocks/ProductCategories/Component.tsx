@@ -49,7 +49,7 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
 
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                      {category.title}
+                      {category.name}
                     </h3>
                     {category.description && (
                       <p className="text-gray-600 text-sm line-clamp-2">{category.description}</p>
@@ -97,7 +97,7 @@ export const ProductCategoriesBlockComponent: React.FC<ProductCategoriesBlock> =
                 </div>
 
                 <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
-                  {category.title}
+                  {category.name}
                 </h3>
               </div>
             </Link>

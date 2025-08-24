@@ -83,7 +83,7 @@ export const FeaturedProductsBlockComponent: React.FC<
                     {product.categories && product.categories.length > 0 && (
                       <Badge variant="outline" className="text-xs">
                         {typeof product.categories[0] === 'object'
-                          ? product.categories[0].title
+                          ? product.categories[0].name
                           : product.categories[0]}
                       </Badge>
                     )}

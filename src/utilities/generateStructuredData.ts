@@ -80,8 +80,8 @@ export const generateStructuredData = (args: StructuredDataArgs) => {
     // Add categories if available
     if ('categories' in doc && doc.categories && Array.isArray(doc.categories)) {
       const categories = doc.categories.map(category => {
-        if (typeof category === 'object' && category !== null && 'title' in category) {
-          return category.title
+        if (typeof category === 'object' && category !== null && 'name' in category) {
+          return category.name
         }
         return null
       }).filter(Boolean)
