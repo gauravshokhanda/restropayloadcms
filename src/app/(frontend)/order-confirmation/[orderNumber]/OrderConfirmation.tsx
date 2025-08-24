@@ -152,7 +152,7 @@ export const OrderConfirmation: React.FC<OrderConfirmationProps> = ({ order }) =
 
           <div className="space-y-2">
             <div className="flex justify-between">
-              <span>Subtotal</span>
+              <span>Subtotal (excluding tax)</span>
               <span>${order.subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
